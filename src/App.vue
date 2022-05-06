@@ -1,21 +1,62 @@
-<script setup lang="ts">
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" />
+  <div id="app">
+    <div class="cell cell-map">
+      <OlMap></OlMap>
+    </div>
+    <!-- <div class="cell cell-edit">
+      Edit
+    </div>
+    <div class="cell cell-inspect">
+      Inspect
+    </div> -->
+  </div>
 </template>
 
+<script>
+  import OlMap from './components/OlMap.vue';
+  export default {
+    name: 'App',
+    components: {
+      OlMap
+    },
+  }
+</script>
+
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+  html, body {
+    height: 100%;
+    margin: 0;
+  }
+
+  #app {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 100vh;
+    grid-auto-rows: 1fr;
+    grid-gap: 1rem;
+    padding: 1rem;
+    box-sizing: border-box;
+  }
+
+  .cell {
+    border-radius: 4px;
+    background-color: lightgrey;
+  }
+
+  .cell-map {
+    grid-column: 1;
+    grid-row-start: 1;
+    grid-row-end: 3;
+  }
+
+  .cell-edit {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .cell-inspect {
+    grid-column: 2;
+    grid-row: 2;
+  }
 </style>
