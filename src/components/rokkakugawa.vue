@@ -23,6 +23,7 @@ export default {
         const format = inject('ol-format');
         const geoJson = new format.GeoJSON();
         const toggle = false
+        const checkd = ref(true)
 
         return {
             center,
@@ -34,12 +35,6 @@ export default {
             toggle
         }
     },
-
-    data() {
-        return {
-            checked: true
-        }
-    }
 }
 </script>
 

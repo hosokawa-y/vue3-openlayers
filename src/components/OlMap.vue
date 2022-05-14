@@ -27,10 +27,11 @@ export default {
         const projection = ref("EPSG:4326");
         const zoom = ref(12);
         const rotation = ref(0);
-        const rokkakugawa = ref("src/data/六角川_20210815.geojson");
+        const rokkakugawa = ref("../data/六角川_20210815.geojson");
         const format = inject("ol-format");
         const geoJson = new format.GeoJSON();
         const toggle = false;
+        const checked = ref(true)
 
         return {
             center,
@@ -39,12 +40,8 @@ export default {
             rotation,
             rokkakugawa,
             geoJson,
-            toggle
-        };
-    },
-    data() {
-        return {
-            checked: true
+            toggle,
+            checked
         };
     },
     components: { Rokkakugawa }
