@@ -5,19 +5,22 @@
         <ol-tile-layer>
             <ol-source-osm />
         </ol-tile-layer>
-
-        <div id="v-model-checkbox" class="demo">
-            <input type="checkbox" id="checkbox-rokkakugawa" v-model="checkedR" />
-            <label for="checkbox">令和3年(2021年)8月 六角川 浸水想定図</label>
-            <p v-if="checkedR">
-                <Rokkakugawa />
-            </p>
-            <input type="checkbox" id="checkbox-atami" v-model="checkedA" />
-            <label for="checkbox">令和3年(2021年)7月1日 熱海地区 崩壊地当分布図</label>
-            <p v-if="checkedA">
-                <Atami />
-            </p>
-        </div>
+        <li class="layerCheckbox">
+            <ul>
+                <input type="checkbox" id="checkbox-rokkakugawa" v-model="checkedR" />
+                <label for="checkbox">令和3年(2021年)8月 六角川 浸水想定図</label>
+                <p v-if="checkedR">
+                    <Rokkakugawa />
+                </p>
+            </ul>
+            <ul>
+                <input type="checkbox" id="checkbox-atami" v-model="checkedA" />
+                <label for="checkbox">令和3年(2021年)7月1日 熱海地区 崩壊地当分布図</label>
+                <p v-if="checkedA">
+                    <Atami />
+                </p>
+            </ul>
+        </li>
     </ol-map>
 </template>
 
@@ -52,7 +55,7 @@ export default {
 </script>
 
 <style scoped>
-.demo {
+.layerCheckbox {
     font-family: sans-serif;
     border: 1px solid #eee;
     border-radius: 2px;
@@ -61,5 +64,6 @@ export default {
     margin-bottom: 40px;
     user-select: none;
     overflow-x: auto;
+    list-style: none;
 }
 </style>
