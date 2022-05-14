@@ -9,10 +9,12 @@
     "tsc": "vue-tsc --noEmit"
   },
   "dependencies": {
+    "@types/node": "^17.0.32",
     "vue": "^3.2.25"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^2.3.1",
+    "ol-mapbox-style": "^8.0.7",
     "typescript": "^4.5.4",
     "vite": "^2.9.7",
     "vue-tsc": "^0.34.7",
