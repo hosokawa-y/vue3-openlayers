@@ -7,10 +7,15 @@
         </ol-tile-layer>
 
         <div id="v-model-checkbox" class="demo">
-            <input type="checkbox" id="checkbox" v-model="checked" />
-            <label for="checkbox">六角川</label>
-            <p v-if="checked">
+            <input type="checkbox" id="checkbox-rokkakugawa" v-model="checkedR" />
+            <label for="checkbox">令和3年(2021年)8月 六角川 浸水想定図</label>
+            <p v-if="checkedR">
                 <Rokkakugawa />
+            </p>
+            <input type="checkbox" id="checkbox-atami" v-model="checkedA" />
+            <label for="checkbox">令和3年(2021年)7月1日 熱海地区 崩壊地当分布図</label>
+            <p v-if="checkedA">
+                <Atami />
             </p>
         </div>
     </ol-map>
@@ -21,6 +26,7 @@ import {
     ref
 } from 'vue'
 import Rokkakugawa from './rokkakugawa.vue'
+import Atami from './atami.vue'
 export default {
     setup() {
         const center = ref([130.094129, 33.196412]);
@@ -28,7 +34,8 @@ export default {
         const zoom = ref(12);
         const rotation = ref(0);
         const toggle = false;
-        const checked = ref(true)
+        const checkedR = ref(true)
+        const checkedA = ref(true)
 
         return {
             center,
@@ -36,10 +43,11 @@ export default {
             zoom,
             rotation,
             toggle,
-            checked
+            checkedR,
+            checkedA
         };
     },
-    components: { Rokkakugawa }
+    components: { Rokkakugawa, Atami }
 }
 </script>
 
