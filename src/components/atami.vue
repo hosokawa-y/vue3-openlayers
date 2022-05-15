@@ -7,11 +7,19 @@
             <ol-style-fill color="rgba(0,255,255,0.1)"></ol-style-fill>
         </ol-style>
     </ol-vector-layer>
+    <ol-overlay :position="[139.063595, 35.096493]">
+        <template v-slot="slotProps">
+            <div class="overlay-content">
+                Hello world!<br>
+                Position: {{ slotProps.position }}
+            </div>
+        </template>
+    </ol-overlay>
 </template>
 
 <script lang="ts">
 import {
-    ref, inject
+    ref, inject, defineEmits
 } from 'vue'
 export default {
     setup() {
