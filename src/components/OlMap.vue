@@ -4,21 +4,22 @@
         <ol-view ref="view" :center="center" :rotation="rotation" :zoom="zoom" :projection="projection" />
         <ol-fullscreen-control />
         <ol-mouseposition-control />
+        <ol-attribution-control :collapsible="collapsible" />
         <ol-tile-layer>
             <ol-source-osm />
         </ol-tile-layer>
         <li class="layerPanel">
             <ul>
-                <input type="checkbox" id="checkbox-rokkakugawa" v-model="switchrokkakugawa" />
+                <input type="checkbox" id="checkbox-rokkakugawa" v-model="switchRokkakugawa" />
                 <label for="checkbox">令和3年(2021年)8月 六角川 浸水想定図</label>
-                <p v-if="switchrokkakugawa">
+                <p v-if="switchRokkakugawa">
                     <Rokkakugawa />
                 </p>
             </ul>
             <ul>
-                <input type="checkbox" id="checkbox-atami" v-model="switchatami" @change="switchCenter" />
+                <input type="checkbox" id="checkbox-atami" v-model="switchAtami" @change="switchCenter" />
                 <label for="checkbox">令和3年(2021年)7月1日 熱海地区 崩壊地当分布図</label>
-                <p v-if="switchatami">
+                <p v-if="switchAtami">
                     <Atami />
                 </p>
             </ul>
@@ -39,25 +40,25 @@ export default {
         const projection = ref("EPSG:4326");
         const zoom = ref(12);
         const rotation = ref(0);
+        const collapsible = true
         const switchCenter = (e) => {
             if (e.target.checked) {
                 center.value = [139.063595, 35.096493]
             }
         }
-
-
         return {
             center,
             projection,
             zoom,
             rotation,
             switchCenter,
+            collapsible
         };
     },
     data() {
         return{
-            switchatami: false,
-            switchrokkakugawa: false,
+            switchAtami: false,
+            switchRokkakugawa: false,
         }
     },
     components: { Rokkakugawa, Atami }

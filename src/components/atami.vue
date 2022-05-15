@@ -3,14 +3,14 @@
         <ol-source-vector :url="atamiHoukai" :format="geoJson">
         </ol-source-vector>
         <ol-style>
-            <ol-style-stroke color="blue" :width="2"></ol-style-stroke>
-            <ol-style-fill color="rgba(0,255,255,0.1)"></ol-style-fill>
+            <ol-style-stroke color="rgba(161,86,11,1)" :width="2"></ol-style-stroke>
+            <ol-style-fill color="rgba(161,86,11,0.3)"></ol-style-fill>
         </ol-style>
     </ol-vector-layer>
     <ol-overlay :position="[139.063595, 35.096493]">
         <template v-slot="slotProps">
             <div class="overlay-content">
-                Hello world!<br>
+                令和3年(2021年)7月1日 熱海地区 崩壊地当分布図<br>
                 Position: {{ slotProps.position }}
             </div>
         </template>
@@ -19,7 +19,7 @@
 
 <script lang="ts">
 import {
-    ref, inject, defineEmits
+    ref, inject
 } from 'vue'
 export default {
     setup() {
