@@ -26,8 +26,8 @@
 import {
     ref
 } from 'vue'
-import Rokkakugawa from './rokkakugawa.vue'
-import Atami from './atami.vue'
+import Rokkakugawa from './Rokkakugawa.vue'
+import Atami from './Atami.vue'
 export default {
     setup() {
         const center = ref([130.094129, 33.196412]);
