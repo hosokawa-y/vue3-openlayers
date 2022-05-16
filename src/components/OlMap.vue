@@ -8,20 +8,15 @@
         <ol-tile-layer>
             <ol-source-osm />
         </ol-tile-layer>
+        <!-- <ol-tile-layer>
+            <ol-source-xyz :url="chiriin" :crossOrigin="crossOrigin"/>
+        </ol-tile-layer> -->
         <li class="layerPanel">
             <ul>
-                <input type="checkbox" id="checkbox-rokkakugawa" v-model="switchRokkakugawa" />
-                <label for="checkbox">令和3年(2021年)8月 六角川 浸水想定図</label>
-                <p v-if="switchRokkakugawa">
-                    <Rokkakugawa />
-                </p>
+                <Rokkakugawa @switch-center="switchCenter" />
             </ul>
             <ul>
-                <input type="checkbox" id="checkbox-atami" v-model="switchAtami" @change="switchCenter" />
-                <label for="checkbox">令和3年(2021年)7月1日 熱海地区 崩壊地当分布図</label>
-                <p v-if="switchAtami">
-                    <Atami />
-                </p>
+                <Atami @switch-center="switchCenter" />
             </ul>
         </li>
     </ol-map>
@@ -36,30 +31,26 @@ import Atami from './atami.vue'
 export default {
     setup() {
         const center = ref([130.094129, 33.196412]);
-        // const center = ref([139.063595, 35.096493]);
         const projection = ref("EPSG:4326");
         const zoom = ref(12);
         const rotation = ref(0);
         const collapsible = true
-        const switchCenter = (e) => {
-            if (e.target.checked) {
-                center.value = [139.063595, 35.096493]
-            }
+        const switchCenter = (point: Array<number>) => {
+            console.log("switch center!!!!")
+            center.value = point
         }
+        const chiriin = ref('https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png')
+        const crossOrigin = 'anonymous'
         return {
             center,
             projection,
             zoom,
             rotation,
             switchCenter,
-            collapsible
+            collapsible,
+            chiriin,
+            crossOrigin
         };
-    },
-    data() {
-        return{
-            switchAtami: false,
-            switchRokkakugawa: false,
-        }
     },
     components: { Rokkakugawa, Atami }
 }
