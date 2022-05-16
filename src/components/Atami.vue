@@ -1,9 +1,9 @@
 <template>
-    <input type="checkbox" id="checkbox-atami" v-model="switchAtami" @change="switchCenter" />
+    <input type="checkbox" id="checkbox-atami" v-model="showLayer" @change="switchCenter" />
     <label for="checkbox">令和3年(2021年)7月1日 熱海地区 崩壊地当分布図</label>
-    <p v-if="switchAtami">
+    <div v-if="showLayer">
         <ol-vector-layer>
-            <ol-source-vector :url="atamiHoukai" :format="geoJson">
+            <ol-source-vector :url="url" :format="geoJson">
             </ol-source-vector>
             <ol-style>
                 <ol-style-stroke color="rgba(161,86,11,1)" :width="2"></ol-style-stroke>
@@ -18,7 +18,7 @@
                 </div>
             </template>
         </ol-overlay>
-    </p>
+    </div>
 </template>
 
 <script lang="ts">
@@ -28,7 +28,7 @@ import {
 export default {
     emits: ['switch-center'],
     setup(_, { emit }) {
-        const atamiHoukai = ref('src/data/崩壊地等分布図（熱海市伊豆山・逢初川）第３報(20210706).geojson')
+        const url = ref('src/data/崩壊地等分布図（熱海市伊豆山・逢初川）第３報(20210706).geojson')
         const format = inject('ol-format');
         const geoJson = new format.GeoJSON();
         const switchCenter = (e) => {
@@ -40,14 +40,14 @@ export default {
         }
 
         return {
-            atamiHoukai,
+            url,
             geoJson,
             switchCenter
         }
     },
     data() {
         return {
-            switchAtami: false,
+            showLayer: false,
         }
     }
 }

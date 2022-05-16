@@ -8,9 +8,9 @@
         <ol-tile-layer>
             <ol-source-osm />
         </ol-tile-layer>
-        <!-- <ol-tile-layer>
+        <ol-tile-layer>
             <ol-source-xyz :url="chiriin" :crossOrigin="crossOrigin"/>
-        </ol-tile-layer> -->
+        </ol-tile-layer>
         <li class="layerPanel">
             <ul>
                 <Rokkakugawa @switch-center="switchCenter" />
@@ -39,7 +39,7 @@ export default {
             console.log("switch center!!!!")
             center.value = point
         }
-        const chiriin = ref('https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png')
+        const chiriin = ref('https://cyberjapandata.gsi.go.jp/xyz/20140711dol/{z}/{x}/{y}.png')
         const crossOrigin = 'anonymous'
         return {
             center,
