@@ -23,9 +23,12 @@ export default {
         const rokkakugawa = ref('src/data/六角川_20210815.geojson')
         const format = inject('ol-format');
         const geoJson = new format.GeoJSON();
-        const switchCenter = () => {
-            console.log("switch")
-            emit('switch-center', [130.094129, 33.196412])
+        const switchCenter = (e) => {
+            console.log(e.target.checked)
+            if (e.target.checked) {
+                console.log("switch")
+                emit('switch-center', [130.094129, 33.196412])
+            }
         }
 
         return {

@@ -31,9 +31,12 @@ export default {
         const atamiHoukai = ref('src/data/崩壊地等分布図（熱海市伊豆山・逢初川）第３報(20210706).geojson')
         const format = inject('ol-format');
         const geoJson = new format.GeoJSON();
-        const switchCenter = () => {
-            console.log("switch")
-            emit('switch-center', [139.063595, 35.096493])
+        const switchCenter = (e) => {
+            console.log(e.target.checked)
+            if (e.target.checked) {
+                console.log("switch!")
+                emit('switch-center', [139.063595, 35.096493])
+            } 
         }
 
         return {
