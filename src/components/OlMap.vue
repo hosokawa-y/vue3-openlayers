@@ -9,27 +9,41 @@
             <ol-source-osm />
         </ol-tile-layer>
         <ol-tile-layer>
-            <ol-source-xyz :url="chiriin" :crossOrigin="crossOrigin"/>
+            <ol-source-xyz :url="chiriin" :crossOrigin="crossOrigin" />
         </ol-tile-layer>
-        <li class="layerPanel">
-            <ul>
-                <Rokkakugawa @switch-center="switchCenter" />
-            </ul>
-            <ul>
-                <Atami @switch-center="switchCenter" />
-            </ul>
-        </li>
+        <div class="layerPanel">
+            <vectorLayer :layers="layers" @switch-center="switchCenter" />
+        </div>
     </ol-map>
 </template>
 
 <script lang="ts">
 import {
-    ref
+    ref,
 } from 'vue'
-import Rokkakugawa from './Rokkakugawa.vue'
-import Atami from './Atami.vue'
+import vectorLayer from './VectorLayer.vue'
+
 export default {
     setup() {
+        const atami = {
+            id: 1,
+            url: "src/data/崩壊地等分布図（熱海市伊豆山・逢初川）第３報(20210706).geojson",
+            center: [139.063595, 35.096493],
+            strokeColor: "rgba(161,86,11,1)",
+            fillColor: "rgba(161,86,11,0.3)",
+            label: "令和3年(2021年)7月1日 熱海地区 崩壊地当分布図",
+            flg: false
+        }
+        const rokkakugawa = {
+            id: 2,
+            url: "src/data/六角川_20210815.geojson",
+            center: [130.094129, 33.196412],
+            strokeColor: "blue",
+            fillColor: "rgba(0,255,255,0.1)",
+            label: "令和3年(2021年)8月 六角川 浸水想定図",
+            flg: false
+        }
+        const layers = ref([atami, rokkakugawa])
         const center = ref([130.094129, 33.196412]);
         const projection = ref("EPSG:4326");
         const zoom = ref(12);
@@ -39,8 +53,8 @@ export default {
             console.log("switch center!!!!")
             center.value = point
         }
-        const chiriin = ref('https://cyberjapandata.gsi.go.jp/xyz/20140711dol/{z}/{x}/{y}.png')
-        const crossOrigin = 'anonymous'
+        const chiriin = ref("https://cyberjapandata.gsi.go.jp/xyz/20140711dol/{z}/{x}/{y}.png")
+        const crossOrigin = "anonymous"
         return {
             center,
             projection,
@@ -49,10 +63,11 @@ export default {
             switchCenter,
             collapsible,
             chiriin,
-            crossOrigin
+            crossOrigin,
+            layers
         };
     },
-    components: { Rokkakugawa, Atami }
+    components: { vectorLayer }
 }
 </script>
 
